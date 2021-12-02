@@ -8,10 +8,19 @@
     <title>ChatRoom</title>
 </head>
 <body>
-    <input type="text">
-    <button>Send Message to Everyone</button>
-    <button>Send Message to Me</button>
-    <div id="target"></div>
+    <main>
+        <section id="target">
+            <p>Show Messages</p>
+        </section>
+    
+        <section>
+            <input id="msg" type="text" autofocus>
+            <div class="buttons">
+                <button id="sendToAll">Send Message to Everyone</button>
+                <button id="sendToMe">Send Message to Me</button>
+            </div>
+        </section>
+    </main>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/index.js"></script>

@@ -15,6 +15,16 @@ server.listen(8080, () =>{
 });
 
 io.on('connection', (socket) => {
-    console.log(counter + ' someone connected');
+    socket.on('sendToAll', (message) =>{
+        io.emit("displayMessage", (message));
+        console.log(message);
+    });
+
+    socket.on('sendToMe', (message) =>{
+        socket.emit("displayMessage", (message));
+        console.log(message);
+    });
+
+    console.log(counter);
     counter++;
 });
