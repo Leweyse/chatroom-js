@@ -8,23 +8,18 @@ app.use(express.static(clientPath));
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 
-let counter = 0
+const PORT = 8080;
 
-server.listen(8080, () =>{
-    console.log("server running on " + 8080);
+server.listen(PORT, () =>{
+    console.log("server running on " + PORT);
 });
 
 io.on('connection', (socket) => {
     socket.on('sendToAll', (message) =>{
-        io.emit("displayMessage", (message));
-        console.log(message);
+        io.emit("displayMessageGroup", (message));
     });
 
     socket.on('sendToMe', (message) =>{
-        socket.emit("displayMessage", (message));
-        console.log(message);
+        socket.emit("displayMessagePersonal", (message));
     });
-
-    console.log(counter);
-    counter++;
 });

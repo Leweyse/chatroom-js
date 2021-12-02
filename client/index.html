@@ -9,11 +9,15 @@
 </head>
 <body>
     <main>
-        <section id="target">
+        <section id="msg-group">
+            <p>Show Messages</p>
+        </section>
+
+        <section id="msg-personal">
             <p>Show Messages</p>
         </section>
     
-        <section>
+        <section id="msg-input">
             <input id="msg" type="text" autofocus>
             <div class="buttons">
                 <button id="sendToAll">Send Message to Everyone</button>
@@ -23,6 +27,6 @@
     </main>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="js/index.js"></script>
+    <script type="module" src="js/index.js"></script>
 </body>
 </html>
