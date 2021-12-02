@@ -36,51 +36,78 @@ main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 0.8fr 0.2fr;
-    place-items: center;    
+    place-items: center;
 }
 
 section {
-    display: grid;
-    padding: 2%;
+    position: relative;
 }
 
-section article {
+.content p {
+    position: fixed;
+    bottom: 50%;
+
+    text-align: center;
+    font-size: 5rem;
+    font-family: var(--ff-outfit);
+    text-transform: uppercase;
+    opacity: 0.2;
+
+    transform: rotate(-90deg);
+}
+
+.content:nth-child(1) p {
+    right: 50%;
+}
+
+.content:nth-child(2) p {
+    right: 0;
+}
+
+.messages article {
     position: relative;
     display: grid;
     width: max-content;
     height: max-content;
+    max-width: 80%;
     padding: 1rem;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
     border-radius: 5px;
 
     gap: 1rem;
 }
 
-section article::before,
-section article::after {
+.messages article::before,
+.messages article::after {
     content: '';
     position: absolute;
     border-radius: 5px;
 }
 
-section article::before {
+.messages article::before {
     bottom: 0;
     width: 5px;
     height: 20%;
 }
 
-section article::after {
+.messages article::after {
     bottom: 0;
     width: 20%;
     height: 5px;
 }
 
-section article p {
+.messages article div {
+    position: relative;
     font-size: 1.2rem;
     font-weight: 500;
+
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    line-height: 1.5rem;
 }
 
-section article time {
+.messages article time {
     text-align: end;
     font-size: 0.8rem;
 }
@@ -88,12 +115,22 @@ section article time {
 #msg-input {
     grid-column: 1 / 3;
     grid-row: 2 / 3;
+
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
 }
 
 #msg-group,
 #msg-personal {
     width: 100%;
     height: 100%;
+    padding: 2%;
+
+    place-items: start;
+
     overflow-y: auto;
 }
 
@@ -131,4 +168,49 @@ section article time {
 
 #msg-personal article time {
     color: var(--clr-rhythm);
+}
+
+#msg {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    padding: 1rem;
+    font-size: 1rem;
+
+    border: none;
+    color: var(--clr-richBlack);
+    background: var(--clr-lavender);
+
+    resize: none;
+}
+
+#msg:focus-visible {
+    outline: none;
+}
+
+#msg-input .instructions {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+
+    background: var(--clr-raisinBlack);
+    place-items: center;
+}
+
+#msg-input .instructions p {
+    padding: 0.5rem;
+    color: var(--clr-cultured);
+}
+
+#msg-input .instructions p code {
+    padding: 0.2rem 0.4rem;
+    border-radius: 5px;
+    background: var(--clr-rhythm);
+}
+
+#sendToAll,
+#sendToMe {
+    display: none;
 }

@@ -9,19 +9,27 @@
 </head>
 <body>
     <main>
-        <section id="msg-group">
-            <p>Show Messages</p>
+        <section class="content" id="msg-group">
+            <p>Group</p>
+            <section class="messages" id="group">
+                
+            </section>
         </section>
 
-        <section id="msg-personal">
-            <p>Show Messages</p>
+        <section class="content" id="msg-personal">
+            <p>Notes</p>
+            <section class="messages" id="personal">
+                
+            </section>
         </section>
     
         <section id="msg-input">
-            <input id="msg" type="text" autofocus>
-            <div class="buttons">
-                <button id="sendToAll">Send Message to Everyone</button>
-                <button id="sendToMe">Send Message to Me</button>
+            <textarea autocapitalize="sentences" name="msg" id="msg" placeholder="Write something..." autofocus></textarea>
+            <div class="instructions">
+                <p>Press <code>Enter + n</code> to save a Note</p>
+                <p>Press <code>Enter</code> to send a Message</p>
+                <button id="sendToAll">Send Message</button>
+                <button id="sendToMe">Save Note</button>
             </div>
         </section>
     </main>

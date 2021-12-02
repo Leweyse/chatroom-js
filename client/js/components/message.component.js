@@ -7,7 +7,7 @@ const Message = (msg) => {
     ;
 
     const container = document.createElement('article');
-    const p = document.createElement('p');
+    const p = document.createElement('div');
     const time = document.createElement('time');
 
     p.innerHTML = msg;
