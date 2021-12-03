@@ -2,7 +2,9 @@ import { Message } from "./components/message.component.js";
 
 let socket = io.connect();
 
+const header = document.getElementById('header');
 const login = document.getElementById('login');
+const submit = document.getElementById('btnSubmit')
 
 const msgGroup = document.getElementById('msg-group');
 const msgPersonal = document.getElementById('msg-personal');
@@ -21,6 +23,7 @@ login.addEventListener('submit', (event) => {
 
     user.name = event.target[0].value;
     user.color = event.target[1].value;
+    user.color = user.color.toLowerCase();
 
     for (let i = 0; i < event.target.length - 1; i++) {
         event.target[i].value = "";
@@ -32,19 +35,25 @@ login.addEventListener('submit', (event) => {
 const keys = [];
 
 window.addEventListener('keydown', (event) => {
-    const validKeys = ['Enter', 'n'];
+    if (header.style.display === 'none') {       
+        const validKeys = ['Enter', 'n'];
 
-    for (let i = 0; i < validKeys.length; i++) {
-        if (event.key === validKeys[i] && keys.indexOf(event.key) === -1) {
-            keys.push(event.key);
-        }   
-    }
-    if (keys[0] !== 'Enter') {
-        keys.length = 0;
+        for (let i = 0; i < validKeys.length; i++) {
+            if (event.key === validKeys[i] && keys.indexOf(event.key) === -1) {
+                keys.push(event.key);
+            }   
+        }
+        if (keys[0] !== 'Enter') {
+            keys.length = 0;
+        } else {
+            event.preventDefault();
+            if (keys.length === 2) {
+                sendToMe.click();
+            }
+        }
     } else {
-        event.preventDefault();
-        if (keys.length === 2) {
-            sendToMe.click();
+        if (event.key === 'Enter') {
+            btnSubmit.click();
         }
     }
 })
@@ -57,15 +66,15 @@ window.addEventListener('keyup', (event) => {
 })
 
 sendToAll.addEventListener('click', () => {
-    if (msg.value.length > 0) {
-        socket.emit('sendToAll', msg.value);   
+    if (msg.value.length > 0 && msg.value.trim()) {
+        socket.emit('sendToAll', msg.value);
     }
 
     msg.value = "";
 })
 
 sendToMe.addEventListener('click', () => {
-    if (msg.value.length > 0) {
+    if (msg.value.length > 0 && msg.value.trim()) {
         socket.emit('sendToMe', msg.value);
     }
     
@@ -75,7 +84,8 @@ sendToMe.addEventListener('click', () => {
 
 socket.on('displayUserInfo', (info) => {
     if (info.name !== "" && info.color !== "") {
-        login.style.display = 'none';
+        header.style.display = 'none';
+        msg.focus();
     }
 });
 

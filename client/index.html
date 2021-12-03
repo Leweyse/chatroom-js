@@ -8,11 +8,17 @@
     <title>ChatRoom</title>
 </head>
 <body>
-    <header>
+    <header id="header">
         <form id="login">
-            <input type="text" id="name">
-            <input type="text" id="color">
-            <button type="submit">Submit</button>
+            <div>
+                <label for="name">Insert your Name</label>
+                <input type="text" id="name" autocomplete="off" autofocus>
+            </div>
+            <div>
+                <label for="color">Insert your Color</label>
+                <input type="text" id="color" autocomplete="off">
+            </div>
+            <button type="submit" name="btnSubmit" id="btnSubmit">Submit</button>
         </form>
     </header>
 
@@ -32,7 +38,7 @@
         </section>
     
         <section id="msg-input">
-            <textarea autocapitalize="sentences" name="msg" id="msg" placeholder="Write something..." autofocus></textarea>
+            <textarea autocapitalize="sentences" name="msg" id="msg" placeholder="Write something..."></textarea>
             <div class="instructions">
                 <p>Press <code>Enter + n</code> to save a Note</p>
                 <p>Press <code>Enter</code> to send a Message</p>
