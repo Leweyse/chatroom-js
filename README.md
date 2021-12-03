@@ -1,9 +1,9 @@
-# Chatroom exercise - [Github Pages][webpage]
+# Chatroom exercise
 
 ## The Mission
 Configure a node server, and make a chatroom to hang out with some friends and more!
 
-[<img src="./client/assets/preview.png" width="100%">][webpage] 
+<img src="./client/assets/preview.png" width="90%">
 
 ### Must-have features
 
