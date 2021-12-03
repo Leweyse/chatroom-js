@@ -187,18 +187,6 @@ section {
     border-radius: 5px;
 }
 
-.messages article::before {
-    bottom: 0;
-    width: 5px;
-    height: 20%;
-}
-
-.messages article::after {
-    bottom: 0;
-    width: 20%;
-    height: 5px;
-}
-
 .messages article div {
     position: relative;
     font-size: 1.2rem;
@@ -213,6 +201,39 @@ section {
 .messages article time {
     text-align: end;
     font-size: 0.8rem;
+}
+
+.messages article.toMe {
+    position: relative;
+    left: 100%;
+    padding-top: 0;
+    transform: translateX(-100%);
+}
+
+.messages article.toMe::before {
+    right: 0;
+    bottom: 0;
+    width: 5px;
+    height: 20%;
+}
+
+.messages article.toMe::after {
+    right: 0;
+    bottom: 0;
+    width: 20%;
+    height: 5px;
+}
+
+.messages article.toGroup::before {
+    bottom: 0;
+    width: 5px;
+    height: 20%;
+}
+
+.messages article.toGroup::after {
+    bottom: 0;
+    width: 20%;
+    height: 5px;
 }
 
 #msg-input {

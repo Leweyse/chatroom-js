@@ -23,7 +23,7 @@ login.addEventListener('submit', (event) => {
 
     let user = {};
 
-    user.name = event.target[0].value;
+    user.name = '@' + event.target[0].value;
     user.color = event.target[1].value;
     user.color = user.color.toLowerCase();
 
@@ -105,12 +105,17 @@ socket.on('disconnect', (users) => {
     });
 });
 
-socket.on('displayMessageGroup', (data) => {
-    group.appendChild(Message(data));
+socket.on('displayMessageToGroup', (data) => {
+    group.appendChild(Message(data, "toGroup"));
+    msgGroup.scrollTop = msgGroup.scrollHeight - msgGroup.clientHeight;
+});
+
+socket.on('displayMessageInGroup', (data) => {
+    group.appendChild(Message(data, "toMe"));
     msgGroup.scrollTop = msgGroup.scrollHeight - msgGroup.clientHeight;
 });
 
 socket.on('displayMessagePersonal', (data) => {
-    personal.appendChild(Message(data));
+    personal.appendChild(Message(data, "toMe"));
     msgPersonal.scrollTop = msgPersonal.scrollHeight - msgPersonal.clientHeight;
 });

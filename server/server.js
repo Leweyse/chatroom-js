@@ -36,7 +36,13 @@ io.on('connection', (socket) => {
     });
 
     socket.on('sendToAll', (message) =>{
-        io.emit("displayMessageGroup", {
+        socket.broadcast.emit("displayMessageToGroup", {
+            msg: message,
+            name: users[socket.id].name,
+            color: users[socket.id].color
+        });
+
+        socket.emit("displayMessageInGroup", {
             msg: message,
             name: users[socket.id].name,
             color: users[socket.id].color

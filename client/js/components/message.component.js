@@ -1,4 +1,4 @@
-const Message = (obj) => {
+const Message = (obj, className) => {
     let datetime = 
         "from " + 
         new Date().toLocaleDateString() +
@@ -11,9 +11,12 @@ const Message = (obj) => {
     const div = document.createElement('div');
     const time = document.createElement('time');
 
-    container.setAttribute('id', obj.name);
+    container.classList.add(className);
 
-    p.innerHTML = obj.name;
+    if (container.className === "toGroup") {
+        p.innerHTML = obj.name;        
+    }
+
     div.innerHTML = obj.msg;
     time.innerHTML = datetime;
 
