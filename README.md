@@ -1,7 +1,9 @@
-# Chatroom exercise
+# Chatroom exercise - [Github Pages][webpage]
 
 ## The Mission
 Configure a node server, and make a chatroom to hang out with some friends and more!
+
+[<img src="./client/assets/preview.png" width="100%">][webpage] 
 
 ### Must-have features
 
@@ -29,5 +31,6 @@ Configure a node server, and make a chatroom to hang out with some friends and m
     - again, security is not a must
 - PIMP IT
 
-For the nice to haves, you definitely will need to research the documentation for a lot of them.
 Go check it out at https://socket.io/docs/v4 
+
+[webpage]: https://leweyse.github.io/pokedex/
