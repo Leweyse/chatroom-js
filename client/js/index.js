@@ -1,10 +1,12 @@
+import { User } from "./components/user.component.js";
 import { Message } from "./components/message.component.js";
 
-let socket = io.connect();
+let socket = io.connect('http://localhost:8080/');
 
 const header = document.getElementById('header');
 const login = document.getElementById('login');
-const submit = document.getElementById('btnSubmit')
+
+const userSection = document.getElementById('users-connected');
 
 const msgGroup = document.getElementById('msg-group');
 const msgPersonal = document.getElementById('msg-personal');
@@ -35,7 +37,7 @@ login.addEventListener('submit', (event) => {
 const keys = [];
 
 window.addEventListener('keydown', (event) => {
-    if (header.style.display === 'none') {       
+    if (header.style.display === 'none') {
         const validKeys = ['Enter', 'n'];
 
         for (let i = 0; i < validKeys.length; i++) {
@@ -87,6 +89,20 @@ socket.on('displayUserInfo', (info) => {
         header.style.display = 'none';
         msg.focus();
     }
+});
+
+socket.on('users', (users) => {
+    userSection.innerHTML = "<p class='connected'>Connected</p>";
+    users.forEach(user => {
+       userSection.appendChild(User(user));
+    });
+});
+
+socket.on('disconnect', (users) => {
+    userSection.innerHTML = "<p class='connected'>Connected</p>";
+    users.forEach(user => {
+       userSection.appendChild(User(user));
+    });
 });
 
 socket.on('displayMessageGroup', (data) => {

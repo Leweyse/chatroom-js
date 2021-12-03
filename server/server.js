@@ -19,7 +19,7 @@ server.listen(PORT, () =>{
 const users = {};
 
 io.on('connection', (socket) => {
-    socket.on('user', (obj) =>{
+    socket.on('user', (obj) => {
         if (obj.name !== "" && obj.color !== "") {
             const user = new User();
             const info = {
@@ -29,7 +29,9 @@ io.on('connection', (socket) => {
 
             user.setInfo(info);
             users[socket.id] = user.getInfo();
+
             socket.emit("displayUserInfo", user.getInfo());
+            io.emit("users", Object.values(users));
         }
     });
 
@@ -47,5 +49,10 @@ io.on('connection', (socket) => {
             name: users[socket.id].name,
             color: users[socket.id].color
         });
+    });
+
+    socket.on('disconnect', function() {
+        delete users[socket.id];
+        io.emit("users", Object.values(users));
     });
 });
