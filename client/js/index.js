@@ -2,6 +2,8 @@ import { Message } from "./components/message.component.js";
 
 let socket = io.connect();
 
+const login = document.getElementById('login');
+
 const msgGroup = document.getElementById('msg-group');
 const msgPersonal = document.getElementById('msg-personal');
 
@@ -11,6 +13,21 @@ const personal = document.getElementById('personal');
 const msg = document.getElementById('msg');
 const sendToAll = document.getElementById('sendToAll');
 const sendToMe = document.getElementById('sendToMe');
+
+login.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    let user = {};
+
+    user.name = event.target[0].value;
+    user.color = event.target[1].value;
+
+    for (let i = 0; i < event.target.length - 1; i++) {
+        event.target[i].value = "";
+    }
+
+    socket.emit('user', user);
+})
 
 const keys = [];
 
@@ -56,12 +73,18 @@ sendToMe.addEventListener('click', () => {
     msg.value = "";
 })
 
-socket.on('displayMessageGroup', (msg) => {
-    group.appendChild(Message(msg));
+socket.on('displayUserInfo', (info) => {
+    if (info.name !== "" && info.color !== "") {
+        login.style.display = 'none';
+    }
+});
+
+socket.on('displayMessageGroup', (data) => {
+    group.appendChild(Message(data));
     msgGroup.scrollTop = msgGroup.scrollHeight - msgGroup.clientHeight;
 });
 
-socket.on('displayMessagePersonal', (msg) => {
-    personal.appendChild(Message(msg));
+socket.on('displayMessagePersonal', (data) => {
+    personal.appendChild(Message(data));
     msgPersonal.scrollTop = msgPersonal.scrollHeight - msgPersonal.clientHeight;
 });

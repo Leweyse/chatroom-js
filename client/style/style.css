@@ -43,7 +43,7 @@ section {
     position: relative;
 }
 
-.content p {
+.content .section-title {
     position: fixed;
     bottom: 50%;
 
@@ -56,11 +56,11 @@ section {
     transform: rotate(-90deg);
 }
 
-.content:nth-child(1) p {
+.content:nth-child(1) .section-title {
     right: 50%;
 }
 
-.content:nth-child(2) p {
+.content:nth-child(2) .section-title {
     right: 0;
 }
 
@@ -139,13 +139,15 @@ section {
 }
 
 #msg-group article {
+    --clr-pseudo: var(--clr-madder);
+
     background: var(--clr-lavender);
     color: var(--clr-richBlack);
 }
 
 #msg-group article::before,
 #msg-group article::after {
-    background: var(--clr-madder);
+    background: var(--clr-pseudo);
 }
 
 #msg-group article time {
@@ -213,4 +215,5 @@ section {
 #sendToAll,
 #sendToMe {
     display: none;
+    pointer-events: none;
 }
